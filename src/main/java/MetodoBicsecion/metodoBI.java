@@ -246,6 +246,17 @@ public class metodoBI extends javax.swing.JFrame {
 
 
 
+            //validar que el error sea un numero
+            if (!TxtError.getText().matches("-?\\d+(\\.\\d+)?")) {
+                JOptionPane.showMessageDialog(null, "El error debe ser un numero", "Error", JOptionPane.ERROR_MESSAGE);
+                TxtError.setBorder(BorderFactory.createLineBorder(Color.RED));
+                return; // Salir del método si los datos no son válidos
+            } else {
+                TxtError.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                error = Double.parseDouble(TxtError.getText());
+            }
+
+
 
             // Validar que la multiplicación de los valores de los intervalos sea negativa
             if ((fa*fb > 0)) {
@@ -268,32 +279,26 @@ public class metodoBI extends javax.swing.JFrame {
                     }
                 }
             }
-
-        //raiz con el metodo de biseccion
-        //contador de iteraciones
+//raiz con el metodo de biseccion
+//contador de iteraciones
         int contador = 0;
 
         boolean salir = false;
 
-        //se crea la tabla para guardar, el numero de iteracion, el punto medio y el error relativo
+//se crea la tabla para guardar, el numero de iteracion, el punto medio y el error relativo
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Iteracion");
         modelo.addColumn("Punto medio");
         modelo.addColumn("Error relativo");
 
+// Antes de entrar al bucle while
+        BigDecimal prevc1 = BigDecimal.ZERO;
 
-
-
-
-        double prevc1 = 0;
-
-
-        //se calcula el valor de la funcion en los intervalos
+//se calcula el valor de la funcion en los intervalos
         while (!salir) {
             contador++;
             double fa = 0;
             double fb = 0;
-
 
             if (x6 != 0) {
                 fa += x6 * Math.pow(a, 6);
@@ -322,40 +327,38 @@ public class metodoBI extends javax.swing.JFrame {
             fa += c;
             fb += c;
 
-
             //se calcula el valor de la funcion en el punto medio
-            double c1 = (a + b) / 2;
+            BigDecimal c1 = BigDecimal.valueOf((a + b) / 2);
             //redondear a las decimales que se le pasen
-            c1 = redondearDecimales(c1, decimales);
+            c1 = c1.setScale(decimales, RoundingMode.HALF_UP);
             double fc = 0;
 
             if (x6 != 0) {
-                fc += x6 * Math.pow(c1, 6);
+                fc += x6 * Math.pow(c1.doubleValue(), 6);
             }
             if (x5 != 0) {
-                fc += x5 * Math.pow(c1, 5);
+                fc += x5 * Math.pow(c1.doubleValue(), 5);
             }
             if (x4 != 0) {
-                fc += x4 * Math.pow(c1, 4);
+                fc += x4 * Math.pow(c1.doubleValue(), 4);
             }
             if (x3 != 0) {
-                fc += x3 * Math.pow(c1, 3);
+                fc += x3 * Math.pow(c1.doubleValue(), 3);
             }
             if (x2 != 0) {
-                fc += x2 * Math.pow(c1, 2);
+                fc += x2 * Math.pow(c1.doubleValue(), 2);
             }
             if (x != 0) {
-                fc += x * c1;
+                fc += x * c1.doubleValue();
             }
             fc += c;
 
-
             //se multiplica el valor de la funcion del punto medio con el de las dos funciones, el resultado que de negativo se asigna a b
             if (fa * fc < 0) {
-                b = c1;
+                b = c1.doubleValue();
                 System.out.println("b = " + b);
             } else {
-                a = c1;
+                a = c1.doubleValue();
                 System.out.println("a = " + a);
             }
 
@@ -373,29 +376,33 @@ public class metodoBI extends javax.swing.JFrame {
                 }
             }
 
-
-            // Calcular el error relativo
+            // Dentro del bucle while
             if (contador != 1) {
-                //error relativo
-                double errorrelativo = redondearErrorRelativo(Math.abs((c1 - prevc1) / c1) * 100);
-                // verificar el error relativo
+                // Calcular el error relativo con BigDecimal
+                BigDecimal errorrelativoBD = c1.subtract(prevc1).divide(c1, MathContext.DECIMAL128).abs().multiply(BigDecimal.valueOf(100));
+
+                // Redondear el error relativo a las decimales que se le pasen
+                errorrelativoBD = errorrelativoBD.setScale(decimales, RoundingMode.HALF_UP);
+
+                // Convertir el error relativo a double para compararlo con el error
+                double errorrelativo = errorrelativoBD.doubleValue();
+
+                // Verificar el error relativo
                 if (errorrelativo <= error) {
                     salir = true;
                 }
 
-                //se agrega a la tabla el numero de iteracion, el punto medio y el error relativo
-                modelo.addRow(new Object[]{contador, c1, errorrelativo});
+                // Agregar a la tabla el número de iteración, el punto medio y el error relativo
+                modelo.addRow(new Object[]{contador, c1, errorrelativoBD});
             }
+
+            // Actualizar prevc1
             prevc1 = c1;
         }
 
-        //se imprime la tabla
+//se imprime la tabla
         JTable tabla = new JTable(modelo);
         JOptionPane.showMessageDialog(null, new JScrollPane(tabla));
-
-
-
-
 
 
 

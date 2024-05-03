@@ -172,6 +172,9 @@ public class Metodobabilonico extends javax.swing.JFrame {
             area = redondearDecimales(area, decimales);
             //calculamos el error relativo
             double errorrelativo = (altura-base) / altura*100;
+            //redondeamos el error relativo al numero de decimales que se ingreso
+
+            errorrelativo = redondearDecimales(errorrelativo, decimales);
             //volver el error relativo positivo
             errorrelativo = Math.abs(errorrelativo);
 
