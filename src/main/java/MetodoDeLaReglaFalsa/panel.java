@@ -131,139 +131,81 @@ public class panel extends JPanel {
 
         //btncalcular y btnlimpiar
         btnCalcular.addActionListener(e -> {
-            // Código para el botón Calcular
-            double x6, x5, x4, x3, x2, x, c;
-
-            if (esNumerico(txtField.getText())) {
-                x6 = Double.parseDouble(txtField.getText());
-            } else {
-                x6 = 0;
-            }
-
-            if (esNumerico(txtField1.getText())) {
-                x5 = Double.parseDouble(txtField1.getText());
-            } else {
-                x5 = 0;
-            }
-
-            if (esNumerico(txtField2.getText())) {
-                x4 = Double.parseDouble(txtField2.getText());
-            } else {
-                x4 = 0;
-            }
-
-            if (esNumerico(txtField3.getText())) {
-                x3 = Double.parseDouble(txtField3.getText());
-            } else {
-                x3 = 0;
-            }
-
-            if (esNumerico(txtField4.getText())) {
-                x2 = Double.parseDouble(txtField4.getText());
-            } else {
-                x2 = 0;
-            }
-
-            if (esNumerico(txtField5.getText())) {
-                x = Double.parseDouble(txtField5.getText());
-            } else {
-                x = 0;
-            }
-
-            if (esNumerico(txtField6.getText())) {
-                c = Double.parseDouble(txtField6.getText());
-            } else {
-                c = 0;
-            }
 
 
+            //se obtienen los valores de los campos
+            double x6 = obtenerValor(txtField);
+            double x5 = obtenerValor(txtField1);
+            double x4 = obtenerValor(txtField2);
+            double x3 = obtenerValor(txtField3);
+            double x2 = obtenerValor(txtField4);
+            double x = obtenerValor(txtField5);
+            double c = obtenerValor(txtField6);
+            double a = Double.parseDouble(txtField7.getText());
+            double b = Double.parseDouble(txtField8.getText());
+            double error = Double.parseDouble(txtField9.getText());
+            int decimales = Integer.parseInt(txtField10.getText());
 
+            //se crea la tabla
+            DefaultTableModel modelo = new DefaultTableModel();
+            modelo.addColumn("Iteración");
+            modelo.addColumn("raiz");
+            modelo.addColumn("error");
+            JTable tabla = new JTable(modelo);
+            JScrollPane scroll = new JScrollPane(tabla);
+            scroll.setBounds(400, 357, 800, 400);
+            add(scroll);
 
-            //validar
-            double a=0, b=0, error=0;
-            int decimales = 0;
-            if (esNumerico(txtField7.getText())) {
-                a = Double.parseDouble(txtField7.getText());
-            } else {
-                //si no es numerico mensaje de error
-                JOptionPane.showMessageDialog(null, "El valor de a no es un número", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            if (esNumerico(txtField8.getText())) {
-                b = Double.parseDouble(txtField8.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "El valor de a no es un número", "Error", JOptionPane.ERROR_MESSAGE);
-
-            }
-
-            if (esNumerico(txtField9.getText())) {
-                error = Double.parseDouble(txtField9.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "El valor de a no es un número", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-
-            if (esNumerico(txtField10.getText())) {
-                decimales = Integer.parseInt(txtField10.getText());
-            } else {
-                JOptionPane.showMessageDialog(null, "El valor de a no es un número", "Error", JOptionPane.ERROR_MESSAGE);
-
-            }
-
-
-
+            //se crean las variables
             double fa = evaluarFuncion(x6, x5, x4, x3, x2, x, c, a);
             double fb = evaluarFuncion(x6, x5, x4, x3, x2, x, c, b);
 
+            //se valida que haya una raiz
+            if (fa * fb > 0) {
+                JOptionPane.showMessageDialog(null, "No hay raíz en el intervalo", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            //se crea la variable para la raiz
             double xr = 0;
 
-            //se crea una tabla con 3 columnas {iteracion, raiz, error}
-            String[] columnas = {"Iteración", "Raíz", "Error"};
-            String[][] datos = new String[100][3];
+            //se crea la variable para el error
+            double errorCalculado = 0;
 
-            //se crea un modelo de tabla
-            DefaultTableModel modelo = new DefaultTableModel(datos, columnas);
+            //se crea la variable para la iteracion
+            int i = 0;
 
-            //se crea la tabla
-            JTable tabla = new JTable(modelo);
-
-            //se crea un scroll
-            JScrollPane scroll = new JScrollPane(tabla);
-            scroll.setBounds(400, 300, 500, 300);
-            add(scroll);
-
-            //se crea un contador
-            int i = 1;
-            boolean salir = false;
-
-            //se crea un ciclo
-            while (!salir) {
-                xr = b - (fb * (a - b)) / (fa - fb);
+            //ciclo para calcular la raiz
+            do {
+                //se calcula la raiz
+                xr = b - (fb * (b - a)) / (fb - fa);
+                System.out.println("xr: " + xr);
                 double fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
 
-                double errorCalculado = Math.abs((xr - a) / xr);
+                //se calcula el error
+                errorCalculado = Math.abs((xr - a )/ xr)*100;
 
-                //se redondea el error
-                errorCalculado = redondear(errorCalculado, decimales);
-
-                //se agrega la iteracion, raiz y error a la tabla
-                modelo.addRow(new String[]{String.valueOf(i), String.valueOf(xr), String.valueOf(errorCalculado)});
-
-                //se evalua si el error es menor al error aceptado
-                if (errorCalculado < error) {
-                    salir = true;
-                }
-
-                //se evalua si el producto de fa y fxr es menor a 0
+                //se valida si la raiz es la raiz
                 if (fa * fxr < 0) {
                     b = xr;
                     fb = fxr;
-                } else {
+                } else if (fa * fxr > 0) {
                     a = xr;
                     fa = fxr;
+                } else {
+                    //se terminar el ciclo si fa* fxr = 0
+                    break;
+
                 }
 
+                modelo.addRow(new Object[]{i, redondear(xr, decimales), errorCalculado});
                 i++;
-            }
+            } while (errorCalculado > error);
+
+
+
+
+            
 
 
 
@@ -280,9 +222,15 @@ public class panel extends JPanel {
 
 
 
+
     }
 
-    //metodo para validar si es numerico
+    public static double obtenerValor(JTextField campo) {
+        String texto = campo.getText();
+        return texto.isEmpty() ? 0.0 : Double.parseDouble(texto);
+    }
+
+    //metodo para validar si es un numero y no un caracter
     public static boolean esNumerico(String cadena) {
         try {
             Double.parseDouble(cadena);
