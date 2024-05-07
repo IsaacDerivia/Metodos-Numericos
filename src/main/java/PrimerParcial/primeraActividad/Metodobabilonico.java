@@ -115,8 +115,9 @@ public class Metodobabilonico extends javax.swing.JFrame {
     private void btncalcularActionPerformed(java.awt.event.ActionEvent evt) {
         boolean exit = true;
         //hacer validaciones en todos los campos de texto, que sean numeros, que sean mayores a 0 y que no esten vacios. Aparte el error debe ser menor a 1 y el numero de decimales debe ser mayor a 0
-        if (txtNumero.getText().isEmpty() || TxtDecimales.getText().isEmpty() || TxtError.getText().isEmpty() || !esNumerico(txtNumero.getText()) || !esNumerico(TxtDecimales.getText()) || !esNumerico(TxtError.getText()) || !esMayorCero(txtNumero.getText()) || !esMayorCero(TxtDecimales.getText()) || !esMayorCero(TxtError.getText()) || Double.parseDouble(TxtError.getText()) >= 1 || Double.parseDouble(TxtDecimales.getText()) <= 0 || !esEntero(TxtDecimales.getText())) {
-            //volver de color rojo el marco de los campos de texto que no cumplan con las condiciones
+        if (txtNumero.getText().isEmpty() || TxtDecimales.getText().isEmpty() || TxtError.getText().isEmpty() || !esNumerico(txtNumero.getText()) || !esNumerico(TxtDecimales.getText()) || !esNumerico(TxtError.getText()) || Double.parseDouble(txtNumero.getText()) < 0 || Double.parseDouble(TxtDecimales.getText()) <= 0 || Double.parseDouble(TxtError.getText()) >= 1 || !esEntero(TxtDecimales.getText())) {
+            // Resto del código...
+                    //volver de color rojo el marco de los campos de texto que no cumplan con las condiciones
             if (txtNumero.getText().isEmpty() || !esNumerico(txtNumero.getText()) || !esMayorCero(txtNumero.getText())) txtNumero.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             if (TxtDecimales.getText().isEmpty() || !esNumerico(TxtDecimales.getText()) || !esMayorCero(TxtDecimales.getText()) || Double.parseDouble(TxtDecimales.getText()) <= 0 || !esEntero(TxtDecimales.getText())) TxtDecimales.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             if (TxtError.getText().isEmpty() || !esNumerico(TxtError.getText()) || !esMayorCero(TxtError.getText()) || Double.parseDouble(TxtError.getText()) >= 1) TxtError.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -141,6 +142,10 @@ public class Metodobabilonico extends javax.swing.JFrame {
         int decimales = Integer.parseInt(TxtDecimales.getText());
         double error = Double.parseDouble(TxtError.getText());
 
+        if (error < 0.00001) {
+            error = 0.00001;
+        }
+
 
         //se crean las variables para el metodo de babilonico
         int raiz = 0;
@@ -153,14 +158,16 @@ public class Metodobabilonico extends javax.swing.JFrame {
         model.addColumn("raiz");
         model.addColumn("error relativo");
 
-        //se calcula la raiz mediante el metodo de babilonico
-        raiz = (int) Math.sqrt(numero);
-
+        //se calcula la raiz mediante el metodo de babilonico pero si el valor es menor a 1, se empieza desde 1
+        if (numero < 1) raiz = 1;
+        else {
+            raiz = (int) Math.sqrt(numero);
+            }
         //creamos una variable que se llame base que sera el valor de la raiz
         double base = raiz;
 
 
-        //se crea un ciclo que se repita hasta que el error sea menor o igual al error que se ingreso
+//se crea un ciclo que se repita hasta que el error sea menor o igual al error que se ingreso
         while (exit){
             //calculamos la altura divimos el numero entre la base
             double altura = numero / base;
@@ -173,21 +180,19 @@ public class Metodobabilonico extends javax.swing.JFrame {
             //calculamos el error relativo
             double errorrelativo = (altura-base) / altura*100;
             //redondeamos el error relativo al numero de decimales que se ingreso
-
             errorrelativo = redondearDecimales(errorrelativo, decimales);
             //volver el error relativo positivo
             errorrelativo = Math.abs(errorrelativo);
 
-
-
-
             //se agregan los datos a la tabla
             model.addRow(new Object[]{iteraciones, altura, errorrelativo});
 
-
+            // Redondear el error relativo y el error ingresado al mismo número de decimales antes de la comparación
+            double roundedErrorRelativo = redondearDecimales(errorrelativo, decimales);
+            double roundedError = redondearDecimales(error, decimales);
 
             //si el error relativo es menor o igual al error que se ingreso se detiene el ciclo
-            if (errorrelativo <= error) exit = false;
+            if (roundedErrorRelativo <= roundedError) exit = false;
                 //si no se sigue con el ciclo
             else {
                 //se calcula la nueva base
@@ -197,7 +202,6 @@ public class Metodobabilonico extends javax.swing.JFrame {
             }
             //se aumenta el contador de iteraciones
             iteraciones++;
-
         }
         //se muestra la tabla
         JOptionPane.showMessageDialog(null, new JScrollPane(new JTable(model)), "Resultados", JOptionPane.INFORMATION_MESSAGE);
