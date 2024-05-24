@@ -60,6 +60,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
         radioCsc = new javax.swing.JRadioButton();
         radioSec = new javax.swing.JRadioButton();
         btnCalcular = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 500));
@@ -70,43 +71,43 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
         jLabel1.setText("X⁶");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(51, 17, 15, 19);
+        jLabel1.setBounds(51, 17, 11, 16);
         getContentPane().add(btnx6);
-        btnx6.setBounds(20, 50, 64, 25);
+        btnx6.setBounds(20, 50, 64, 22);
 
         jLabel2.setText("x⁵");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(120, 20, 15, 19);
+        jLabel2.setBounds(120, 20, 15, 16);
         getContentPane().add(btnx5);
-        btnx5.setBounds(100, 50, 64, 25);
+        btnx5.setBounds(100, 50, 64, 22);
 
         jLabel3.setText("x⁴");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 20, 13, 19);
+        jLabel3.setBounds(210, 20, 10, 16);
         getContentPane().add(btnx4);
-        btnx4.setBounds(180, 50, 64, 25);
+        btnx4.setBounds(180, 50, 64, 22);
 
         jLabel4.setText("x³");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(280, 20, 15, 19);
+        jLabel4.setBounds(280, 20, 15, 16);
         getContentPane().add(btnx3);
-        btnx3.setBounds(260, 50, 64, 25);
+        btnx3.setBounds(260, 50, 64, 22);
 
         jLabel5.setText("x²");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(370, 20, 13, 19);
+        jLabel5.setBounds(370, 20, 10, 16);
         getContentPane().add(btnx2);
-        btnx2.setBounds(340, 50, 64, 25);
+        btnx2.setBounds(340, 50, 64, 22);
 
         jLabel6.setText("x");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 20, 15, 19);
+        jLabel6.setBounds(440, 20, 15, 16);
         getContentPane().add(btnx);
-        btnx.setBounds(420, 50, 64, 25);
+        btnx.setBounds(420, 50, 64, 22);
 
         jLabel7.setText("c");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(520, 20, 15, 19);
+        jLabel7.setBounds(520, 20, 15, 16);
 
         btnC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -114,7 +115,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnC);
-        btnC.setBounds(500, 50, 64, 25);
+        btnC.setBounds(500, 50, 64, 22);
 
         RadioRadianes.setText("Radianes");
         RadioRadianes.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +124,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RadioRadianes);
-        RadioRadianes.setBounds(40, 220, 83, 23);
+        RadioRadianes.setBounds(40, 220, 70, 21);
 
         RadioGrados.setText("Grados");
         RadioGrados.addActionListener(new java.awt.event.ActionListener() {
@@ -132,43 +133,43 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RadioGrados);
-        RadioGrados.setBounds(150, 220, 115, 23);
+        RadioGrados.setBounds(150, 220, 115, 21);
 
         jLabel15.setText("Error");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(30, 380, 35, 19);
+        jLabel15.setBounds(30, 380, 25, 16);
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(20, 420, 90, 25);
+        jTextField9.setBounds(20, 420, 90, 22);
 
         jLabel16.setText("Decimales");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(150, 390, 100, 19);
+        jLabel16.setBounds(150, 390, 100, 16);
         getContentPane().add(jTextField10);
-        jTextField10.setBounds(140, 420, 100, 25);
+        jTextField10.setBounds(140, 420, 100, 22);
 
         radioSeno.setText("Sen");
         getContentPane().add(radioSeno);
-        radioSeno.setBounds(60, 130, 47, 23);
+        radioSeno.setBounds(60, 130, 42, 21);
 
         RadioCos.setText("Cos");
         getContentPane().add(RadioCos);
-        RadioCos.setBounds(130, 130, 47, 23);
+        RadioCos.setBounds(130, 130, 43, 21);
 
         Radiotan.setText("Tan");
         getContentPane().add(Radiotan);
-        Radiotan.setBounds(200, 130, 47, 23);
+        Radiotan.setBounds(200, 130, 42, 21);
 
         radioCot.setText("Cot");
         getContentPane().add(radioCot);
-        radioCot.setBounds(270, 130, 47, 23);
+        radioCot.setBounds(270, 130, 47, 21);
 
         radioCsc.setText("Csc");
         getContentPane().add(radioCsc);
-        radioCsc.setBounds(380, 130, 46, 23);
+        radioCsc.setBounds(380, 130, 42, 21);
 
         radioSec.setText("Sec");
         getContentPane().add(radioSec);
-        radioSec.setBounds(330, 130, 46, 23);
+        radioSec.setBounds(330, 130, 41, 21);
 
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -177,10 +178,16 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalcular);
-        btnCalcular.setBounds(630, 50, 100, 25);
+        btnCalcular.setBounds(630, 50, 100, 23);
+
+        btnLimpiar.setText("Limpiar");
+        getContentPane().add(btnLimpiar);
+        btnLimpiar.setBounds(630, 90, 100, 23);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
 
 
     // Declarar los JRadioButton como variables de instancia
@@ -189,6 +196,34 @@ public class ReglaFalsa extends javax.swing.JFrame {
     JRadioButton DeciamlesGrado;
     JRadioButton MinutosGrado;
 
+    //declara jtextfield
+    JTextField numerador1;
+    JTextField denominador1;
+    JTextField numerador2;
+    JTextField denominador2;
+
+    JTextField radian1;
+    JTextField radian2;
+
+    JTextField grados1;
+    JTextField grados2;
+
+    JTextField minutos1;
+    JTextField minutos2;
+
+    JTextField segundos1;
+    JTextField segundos2;
+
+    JTextField gradosnormales1;
+    JTextField gradosnormales2;
+
+
+
+
+
+    //declarar dos variables que vana recibir los valores de los txtfield
+    double a;
+    double b;
 
     private void btnCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCActionPerformed
         // TODO add your handling code here:
@@ -220,10 +255,65 @@ public class ReglaFalsa extends javax.swing.JFrame {
         getContentPane().revalidate();
         getContentPane().repaint();
 
+
+        //action listener vacio para pi radian
+        piRadianButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                piRadianButtonActionPerformed(evt);
+            }
+        });
+
+        //action listener vacio para decimal radian
+        decimalRadianButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                decimalRadianButtonActionPerformed(evt);
+            }
+        });
+
     }//GEN-LAST:event_RadioRadianesActionPerformed
+
+    //evento de decimal radian
+    private void decimalRadianButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+
+
+        //oculta los botones de radianes
+        
+
+
+
+
+
+
+    }
+
+
+    //evento de pi radian
+    private void piRadianButtonActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+
+        //
+
+        //oculta los botones de radianes
+
+    }
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
+        //se obtiene el valor de los txtfield
+            double x6 = Double.parseDouble(btnx6.getText());
+            double x5 = Double.parseDouble(btnx5.getText());
+            double x4 = Double.parseDouble(btnx4.getText());
+            double x3 = Double.parseDouble(btnx3.getText());
+            double x2 = Double.parseDouble(btnx2.getText());
+            double x = Double.parseDouble(btnx.getText());
+            double c = Double.parseDouble(btnC.getText());
+
+            //se hacen las validaciones para los campos
+
+
+
+
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     private void RadioGradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioGradosActionPerformed
@@ -251,6 +341,8 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_RadioGradosActionPerformed
+
+
 
     /**
      * @param args the command line arguments
@@ -294,6 +386,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
     private javax.swing.JRadioButton Radiotan;
     private javax.swing.JTextField btnC;
     private javax.swing.JButton btnCalcular;
+    private javax.swing.JButton btnLimpiar;
     private javax.swing.JTextField btnx;
     private javax.swing.JTextField btnx2;
     private javax.swing.JTextField btnx3;
