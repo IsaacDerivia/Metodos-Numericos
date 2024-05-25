@@ -132,6 +132,10 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 RadioGradosActionPerformed(evt);
             }
         });
+        //grupo de botones para radianes y grados
+        buttonGroup1.add(RadioRadianes);
+        buttonGroup1.add(RadioGrados);
+
         getContentPane().add(RadioGrados);
         RadioGrados.setBounds(150, 220, 115, 21);
 
@@ -217,6 +221,9 @@ public class ReglaFalsa extends javax.swing.JFrame {
     JTextField gradosnormales1;
     JTextField gradosnormales2;
 
+    //declarar variables para saber si se selecciono radianes o grados
+    int opcion = 0;
+
 
 
 
@@ -231,13 +238,43 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
     private void RadioRadianesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioRadianesActionPerformed
         // TODO add your handling code here:
-        // Eliminar los botones de grados si existen
-        if (DeciamlesGrado != null && MinutosGrado != null) {
+        // Eliminar todos los botones de grados
+        if (DeciamlesGrado != null) {
             getContentPane().remove(DeciamlesGrado);
-            getContentPane().remove(MinutosGrado);
             DeciamlesGrado = null;
+        }
+        if (MinutosGrado != null) {
+            getContentPane().remove(MinutosGrado);
             MinutosGrado = null;
         }
+
+
+
+        //eliminar los txtfield de grados
+        if (grados1 != null && grados2 != null && minutos1 != null && minutos2 != null && segundos1 != null && segundos2 != null) {
+            getContentPane().remove(grados1);
+            getContentPane().remove(grados2);
+            getContentPane().remove(minutos1);
+            getContentPane().remove(minutos2);
+            getContentPane().remove(segundos1);
+            getContentPane().remove(segundos2);
+            grados1 = null;
+            grados2 = null;
+            minutos1 = null;
+            minutos2 = null;
+            segundos1 = null;
+            segundos2 = null;
+        }
+
+        //eliminar los txtfield de grados normales
+        if (gradosnormales1 != null && gradosnormales2 != null) {
+            getContentPane().remove(gradosnormales1);
+            getContentPane().remove(gradosnormales2);
+            gradosnormales1 = null;
+            gradosnormales2 = null;
+        }
+
+
 
         // Crear los nuevos JRadioButton
         piRadianButton = new JRadioButton("PI Radian");
@@ -259,6 +296,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
         //action listener vacio para pi radian
         piRadianButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
+                //llama al evento de pi radian
                 piRadianButtonActionPerformed(evt);
             }
         });
@@ -270,19 +308,97 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
 
+
+
+
     }//GEN-LAST:event_RadioRadianesActionPerformed
 
     //evento de decimal radian
     private void decimalRadianButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-
+        opcion = 0;
         //oculta los botones de radianes
-        
+        if (piRadianButton != null && decimalRadianButton != null) {
+            getContentPane().remove(piRadianButton);
+            getContentPane().remove(decimalRadianButton);
+            piRadianButton = null;
+            decimalRadianButton = null;
+        }
+
+        //ocultar todos los txtfield y radiobuttons que no se utilicen en el evento
+        if (numerador1 != null && denominador1 != null && numerador2 != null && denominador2 != null) {
+            getContentPane().remove(numerador1);
+            getContentPane().remove(denominador1);
+            getContentPane().remove(numerador2);
+            getContentPane().remove(denominador2);
+            numerador1 = null;
+            denominador1 = null;
+            numerador2 = null;
+            denominador2 = null;
+        }
+
+        if (grados1 != null && grados2 != null) {
+            getContentPane().remove(grados1);
+            getContentPane().remove(grados2);
+            grados1 = null;
+            grados2 = null;
+        }
+
+        if (minutos1 != null && minutos2 != null) {
+            getContentPane().remove(minutos1);
+            getContentPane().remove(minutos2);
+            minutos1 = null;
+            minutos2 = null;
+        }
+
+        if (segundos1 != null && segundos2 != null) {
+            getContentPane().remove(segundos1);
+            getContentPane().remove(segundos2);
+            segundos1 = null;
+            segundos2 = null;
+        }
+
+        if (gradosnormales1 != null && gradosnormales2 != null) {
+            getContentPane().remove(gradosnormales1);
+            getContentPane().remove(gradosnormales2);
+            gradosnormales1 = null;
+            gradosnormales2 = null;
+        }
+
+        if (radian1 != null && radian2 != null) {
+            getContentPane().remove(radian1);
+            getContentPane().remove(radian2);
+            radian1 = null;
+            radian2 = null;
+        }
+
+        //se eliminan los botones de grados si existen
+        if (DeciamlesGrado != null && MinutosGrado != null) {
+            getContentPane().remove(DeciamlesGrado);
+            getContentPane().remove(MinutosGrado);
+            DeciamlesGrado = null;
+            MinutosGrado = null;
+        }
 
 
 
 
+        //utilizar los dos txtfield de radianes para ingresar los valores
+        //se crean los nuevos JtextField
+        radian1 = new JTextField();
+        radian2 = new JTextField();
+
+        //se agregan los nuevos JtextField al panel
+        getContentPane().add(radian1);
+        getContentPane().add(radian2);
+
+        //se posicionan los nuevos JtextField
+        radian1.setBounds(40, 300, 100, 23);
+        radian2.setBounds(150, 300, 100, 23);
+
+        //se actualiza el panel
+        getContentPane().revalidate();
+        getContentPane().repaint();
 
 
     }
@@ -291,25 +407,158 @@ public class ReglaFalsa extends javax.swing.JFrame {
     //evento de pi radian
     private void piRadianButtonActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
-
-        //
+        opcion = 1;
 
         //oculta los botones de radianes
+        if (piRadianButton != null && decimalRadianButton != null) {
+            getContentPane().remove(piRadianButton);
+            getContentPane().remove(decimalRadianButton);
+            piRadianButton = null;
+            decimalRadianButton = null;
+        }
 
+        //utilizar los 2 numeradores y denominadores para ingresar los valores
+        //se crean los nuevos JtextField
+        numerador1 = new JTextField();
+        denominador1 = new JTextField();
+        numerador2 = new JTextField();
+        denominador2 = new JTextField();
+
+        //se agregan los nuevos JtextField al panel
+        getContentPane().add(numerador1);
+        getContentPane().add(denominador1);
+        getContentPane().add(numerador2);
+        getContentPane().add(denominador2); // Agrega denominador2 al panel
+
+        //se posicionan los nuevos JtextField
+        numerador1.setBounds(40, 300, 100, 23);
+        denominador1.setBounds(150, 300, 100, 23);
+
+        //posicion
+        numerador2.setBounds(40, 350, 100, 23);
+        denominador2.setBounds(150, 350, 100, 23);
+
+        //se actualiza el panel
+        getContentPane().revalidate();
+        getContentPane().repaint();
     }
+
+
+
+
 
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
         // TODO add your handling code here:
         //se obtiene el valor de los txtfield
-            double x6 = Double.parseDouble(btnx6.getText());
-            double x5 = Double.parseDouble(btnx5.getText());
-            double x4 = Double.parseDouble(btnx4.getText());
-            double x3 = Double.parseDouble(btnx3.getText());
-            double x2 = Double.parseDouble(btnx2.getText());
-            double x = Double.parseDouble(btnx.getText());
-            double c = Double.parseDouble(btnC.getText());
+        double x6 = btnx6.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx6.getText());
+        double x5 = btnx5.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx5.getText());
+        double x4 = btnx4.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx4.getText());
+        double x3 = btnx3.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx3.getText());
+        double x2 = btnx2.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx2.getText());
+        double x = btnx.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx.getText());
+        double c = btnC.getText().isEmpty() ? 0.0 : Double.parseDouble(btnC.getText());
 
-            //se hacen las validaciones para los campos
+        //se optiene la opcion que eligio el usuario
+        if(opcion == 0){
+            //validar los txtfield de radianes
+            try {
+                double valorradian1 = radian1.getText().isEmpty() ? 0.0 : Double.parseDouble(radian1.getText());
+                double valorradian2 = radian2.getText().isEmpty() ? 0.0 : Double.parseDouble(radian2.getText());
+            } catch (Exception e) {
+                //mensaje de error
+                JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
+                //limpiar los txtfield y volver su marco rojo
+                radian1.setText("");
+                radian2.setText("");
+                radian1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                radian2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                return;
+            }
+
+        } else if (opcion == 1) {
+            //validar los txtfield de fraccion
+            try {
+                double valornumerador1 = numerador1.getText().isEmpty() ? 0.0 : Double.parseDouble(numerador1.getText());
+                double valordenominador1 = denominador1.getText().isEmpty() ? 0.0 : Double.parseDouble(denominador1.getText());
+                double valornumerador2 = numerador2.getText().isEmpty() ? 0.0 : Double.parseDouble(numerador2.getText());
+                double valordenominador2 = denominador2.getText().isEmpty() ? 0.0 : Double.parseDouble(denominador2.getText());
+
+
+                // Validar que los denominadores no sean cero
+                if (valordenominador1 == 0 || valordenominador2 == 0) {
+                    JOptionPane.showMessageDialog(null, "Los denominadores no pueden ser cero");
+                    //limpiar el txtfield que sea cero y volver su marco rojo
+                    if (valordenominador1 == 0) {
+                        denominador1.setText("");
+                        denominador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                    }
+                    if (valordenominador2 == 0) {
+                        denominador2.setText("");
+                        denominador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                    }
+                    return;
+                }
+
+
+            } catch (Exception e) {
+                //mensaje de error
+                JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
+                //limpiar los txtfield y volver su marco rojo
+                numerador1.setText("");
+                denominador1.setText("");
+                numerador2.setText("");
+                denominador2.setText("");
+                numerador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                denominador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                numerador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                denominador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                return;
+            }
+        } else if (opcion == 2) {
+            //validar los txtfield de grados
+            try {
+                double valorgrados1 = gradosnormales1.getText().isEmpty() ? 0.0 : Double.parseDouble(gradosnormales1.getText());
+                double valorgrados2 = gradosnormales2.getText().isEmpty() ? 0.0 : Double.parseDouble(gradosnormales2.getText());
+            } catch (Exception e) {
+                //mensaje de error
+                JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
+                //limpiar los txtfield y volver su marco rojo
+                gradosnormales1.setText("");
+                gradosnormales2.setText("");
+                gradosnormales1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                gradosnormales2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                return;
+            }
+        } else if (opcion == 3) {
+            //validar los txtfield de grados
+            try {
+                double valorgrados1 = grados1.getText().isEmpty() ? 0.0 : Double.parseDouble(grados1.getText());
+                double valorminutos1 = minutos1.getText().isEmpty() ? 0.0 : Double.parseDouble(minutos1.getText());
+                double valorsegundos1 = segundos1.getText().isEmpty() ? 0.0 : Double.parseDouble(segundos1.getText());
+
+                double valorgrados2 = grados2.getText().isEmpty() ? 0.0 : Double.parseDouble(grados2.getText());
+                double valorminutos2 = minutos2.getText().isEmpty() ? 0.0 : Double.parseDouble(minutos2.getText());
+                double valorsegundos2 = segundos2.getText().isEmpty() ? 0.0 : Double.parseDouble(segundos2.getText());
+            } catch (Exception e) {
+                //mensaje de error
+                JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
+                //limpiar los txtfield y volver su marco rojo
+                grados1.setText("");
+                minutos1.setText("");
+                segundos1.setText("");
+                grados2.setText("");
+                minutos2.setText("");
+                segundos2.setText("");
+                grados1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                minutos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                segundos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                grados2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                minutos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                segundos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                return;
+            }
+
+        }
 
 
 
@@ -318,9 +567,28 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
     private void RadioGradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioGradosActionPerformed
         // TODO add your handling code here:
+        //se eliminan los botones de radianes si existen
+        if (piRadianButton != null && decimalRadianButton != null) {
+            getContentPane().remove(piRadianButton);
+            getContentPane().remove(decimalRadianButton);
+            piRadianButton = null;
+            decimalRadianButton = null;
+        }
+
+        //se eliminan los botones de grados si existen
+        if (DeciamlesGrado != null && MinutosGrado != null) {
+            getContentPane().remove(DeciamlesGrado);
+            getContentPane().remove(MinutosGrado);
+            DeciamlesGrado = null;
+            MinutosGrado = null;
+        }
+
+
+
+
         //se crean los nuevos JradioButton
-        JRadioButton DeciamlesGrado = new JRadioButton("Decimales en grados");
-        JRadioButton MinutosGrado = new JRadioButton("DMS");
+        DeciamlesGrado = new JRadioButton("Decimales en grados");
+        MinutosGrado = new JRadioButton("DMS");
 
         //se crea un nuevo ButtonGroup
         ButtonGroup groupUnidadesAngulares = new ButtonGroup();
@@ -339,8 +607,99 @@ public class ReglaFalsa extends javax.swing.JFrame {
         getContentPane().revalidate();
         getContentPane().repaint();
 
+        //action listener vacio para DeciamlesGrado
+        DeciamlesGrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DeciamlesGradoActionPerformed(evt);
+            }
+        });
+
+        //action listener vacio para MinutosGrado
+        MinutosGrado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MinutosGradoActionPerformed(evt);
+            }
+        });
+
 
     }//GEN-LAST:event_RadioGradosActionPerformed
+
+    //evento de DeciamlesGrado
+    private void DeciamlesGradoActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        opcion = 2;
+        //oculta los botones de grados
+        if (DeciamlesGrado != null && MinutosGrado != null) {
+            getContentPane().remove(DeciamlesGrado);
+            getContentPane().remove(MinutosGrado);
+            DeciamlesGrado = null;
+            MinutosGrado = null;
+        }
+
+        //utilizar los dos txtfield de grados para ingresar los valores
+        //se crean los nuevos JtextField
+        gradosnormales1 = new JTextField();
+        gradosnormales2 = new JTextField();
+
+        //se agregan los nuevos JtextField al panel
+        getContentPane().add(gradosnormales1);
+        getContentPane().add(gradosnormales2);
+
+        //se posicionan los nuevos JtextField
+        gradosnormales1.setBounds(40, 300, 100, 23);
+        gradosnormales2.setBounds(150, 300, 100, 23);
+
+        //se actualiza el panel
+        getContentPane().revalidate();
+        getContentPane().repaint();
+    }
+
+    //evento de MinutosGrado
+    private void MinutosGradoActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+        opcion = 3;
+        //oculta los botones de grados
+        if (DeciamlesGrado != null && MinutosGrado != null) {
+            getContentPane().remove(DeciamlesGrado);
+            getContentPane().remove(MinutosGrado);
+            DeciamlesGrado = null;
+            MinutosGrado = null;
+        }
+
+        //utilizar los 6 txtfield para ingresar los valores
+        //se crean los nuevos JtextField
+        grados1 = new JTextField();
+        minutos1 = new JTextField();
+        segundos1 = new JTextField();
+
+        grados2 = new JTextField();
+        minutos2 = new JTextField();
+        segundos2 = new JTextField();
+
+        //se agregan los nuevos JtextField al panel
+        getContentPane().add(grados1);
+        getContentPane().add(minutos1);
+        getContentPane().add(segundos1);
+
+        getContentPane().add(grados2);
+        getContentPane().add(minutos2);
+        getContentPane().add(segundos2);
+
+        //se posicionan los nuevos JtextField
+        grados1.setBounds(40, 300, 100, 23);
+        minutos1.setBounds(150, 300, 100, 23);
+        segundos1.setBounds(260, 300, 100, 23);
+
+        grados2.setBounds(40, 350, 100, 23);
+        minutos2.setBounds(150, 350, 100, 23);
+        segundos2.setBounds(260, 350, 100, 23);
+
+        //se actualiza el panel
+        getContentPane().revalidate();
+        getContentPane().repaint();
+
+
+    }
 
 
 
