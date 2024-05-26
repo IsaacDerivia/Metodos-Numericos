@@ -10,8 +10,19 @@ package ReglaFalsaTrigonometrica;
  */
 
 import javax.swing.*;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class ReglaFalsa extends javax.swing.JFrame {
+
+    private DefaultTableModel modelo;
+    private JTable tabla;
+    private JScrollPane scroll;
+    ;
 
     /**
      * Creates new form ReglaFalsa
@@ -189,9 +200,19 @@ public class ReglaFalsa extends javax.swing.JFrame {
         btnLimpiar.setBounds(630, 90, 100, 23);
 
         pack();
+
+        // Inicializa la tabla y el JScrollPane al principio
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Iteración");
+        modelo.addColumn("raiz");
+        modelo.addColumn("error");
+        tabla = new JTable(modelo);
+        scroll = new JScrollPane(tabla);
+        scroll.setBounds(500, 110, 380, 500);
+        add(scroll);
+
+
     }// </editor-fold>//GEN-END:initComponents
-
-
 
 
     // Declarar los JRadioButton como variables de instancia
@@ -225,9 +246,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
     int opcion = 0;
 
 
-
-
-
     //declarar dos variables que vana recibir los valores de los txtfield
     double a;
     double b;
@@ -247,7 +265,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
             getContentPane().remove(MinutosGrado);
             MinutosGrado = null;
         }
-
 
 
         //eliminar los txtfield de grados
@@ -273,7 +290,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
             gradosnormales1 = null;
             gradosnormales2 = null;
         }
-
 
 
         // Crear los nuevos JRadioButton
@@ -307,8 +323,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 decimalRadianButtonActionPerformed(evt);
             }
         });
-
-
 
 
     }//GEN-LAST:event_RadioRadianesActionPerformed
@@ -381,8 +395,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
         }
 
 
-
-
         //utilizar los dos txtfield de radianes para ingresar los valores
         //se crean los nuevos JtextField
         radian1 = new JTextField();
@@ -416,6 +428,14 @@ public class ReglaFalsa extends javax.swing.JFrame {
             piRadianButton = null;
             decimalRadianButton = null;
         }
+        //eliminar txtfield de radianes decimal
+        if (radian1 != null && radian2 != null) {
+            getContentPane().remove(radian1);
+            getContentPane().remove(radian2);
+            radian1 = null;
+            radian2 = null;
+        }
+
 
         //utilizar los 2 numeradores y denominadores para ingresar los valores
         //se crean los nuevos JtextField
@@ -444,26 +464,53 @@ public class ReglaFalsa extends javax.swing.JFrame {
     }
 
 
-
-
-
     private void btnCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularActionPerformed
-        // TODO add your handling code here:
-        //se obtiene el valor de los txtfield
-        double x6 = btnx6.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx6.getText());
-        double x5 = btnx5.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx5.getText());
-        double x4 = btnx4.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx4.getText());
-        double x3 = btnx3.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx3.getText());
-        double x2 = btnx2.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx2.getText());
-        double x = btnx.getText().isEmpty() ? 0.0 : Double.parseDouble(btnx.getText());
-        double c = btnC.getText().isEmpty() ? 0.0 : Double.parseDouble(btnC.getText());
+
+        //se inicializan las variables de x en 0
+        double x6 = 0;
+        double x5 = 0;
+        double x4 = 0;
+        double x3 = 0;
+        double x2 = 0;
+        double x = 0;
+        double c = 0;
+
+
+
+
+        try {
+
+            // Obtener los valores de los campos de texto y convertirlos a números
+            x6 = obtenerValor(btnx6);
+            x5 = obtenerValor(btnx5);
+            x4 = obtenerValor(btnx4);
+            x3 = obtenerValor(btnx3);
+            x2 = obtenerValor(btnx2);
+            x = obtenerValor(btnx);
+            c = obtenerValor(btnC);
+
+
+
+        } catch (NumberFormatException e) {
+            // Mostrar mensaje de error si alguno de los campos no contiene un valor numérico válido
+            JOptionPane.showMessageDialog(null, "Ingrese un valor válido en todos los campos.");
+        }
+
+
+
+
+
+
 
         //se optiene la opcion que eligio el usuario
-        if(opcion == 0){
+        if (opcion == 0) {
             //validar los txtfield de radianes
             try {
                 double valorradian1 = radian1.getText().isEmpty() ? 0.0 : Double.parseDouble(radian1.getText());
                 double valorradian2 = radian2.getText().isEmpty() ? 0.0 : Double.parseDouble(radian2.getText());
+                //se le asigan el valor de los txtfield a las variables
+                a = valorradian1;
+                b = valorradian2;
             } catch (Exception e) {
                 //mensaje de error
                 JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
@@ -499,6 +546,10 @@ public class ReglaFalsa extends javax.swing.JFrame {
                     return;
                 }
 
+                //se hace la operacion para asignarle los valores de pi radian a las variables a y b
+                a = ((valornumerador1 / valordenominador1) * Math.PI);
+                b = ((valornumerador1 / valordenominador1) * Math.PI);
+
 
             } catch (Exception e) {
                 //mensaje de error
@@ -513,12 +564,20 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 numerador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
                 denominador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
                 return;
+                //hacer la operacion para asignarle los valores de pi radian a las variables a y b
+
+
             }
         } else if (opcion == 2) {
             //validar los txtfield de grados
             try {
                 double valorgrados1 = gradosnormales1.getText().isEmpty() ? 0.0 : Double.parseDouble(gradosnormales1.getText());
                 double valorgrados2 = gradosnormales2.getText().isEmpty() ? 0.0 : Double.parseDouble(gradosnormales2.getText());
+
+                //se hace la operacion para asignarle los valores de grados a las variables a y b
+                a = Math.toRadians(valorgrados1);
+                b = Math.toRadians(valorgrados2);
+
             } catch (Exception e) {
                 //mensaje de error
                 JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
@@ -539,6 +598,12 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 double valorgrados2 = grados2.getText().isEmpty() ? 0.0 : Double.parseDouble(grados2.getText());
                 double valorminutos2 = minutos2.getText().isEmpty() ? 0.0 : Double.parseDouble(minutos2.getText());
                 double valorsegundos2 = segundos2.getText().isEmpty() ? 0.0 : Double.parseDouble(segundos2.getText());
+
+                //se hace la operacion para asignarle los valores de grados a las variables a y b
+                a = Math.toRadians((valorgrados1 + (valorminutos1 / 60) + (valorsegundos1 / 3600)));
+                b = Math.toRadians((valorgrados2 + (valorminutos2 / 60) + (valorsegundos2 / 3600)));
+
+
             } catch (Exception e) {
                 //mensaje de error
                 JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
@@ -559,11 +624,193 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
 
         }
+        //se inicializan las variables error y decimales
+        int iteraciones = 200;
+        double error = 0.0;
+        int decimales = 0;
+
+        //se obtiene el valor de error y decimales
+        try {
+            error = Double.parseDouble(jTextField9.getText());
+            decimales = Integer.parseInt(jTextField10.getText());
+
+
+        } catch (Exception e) {
+            //mensaje de error
+            JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
+            //limpiar los txtfield y volver su marco rojo
+            jTextField9.setText("");
+            jTextField10.setText("");
+            jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            return;
+        }
+
+        //validar que el error y los decimales no sean negativos espcificando cual
+        if (Double.parseDouble(jTextField9.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "El error no puede ser negativo");
+            jTextField9.setText("");
+            jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            return;
+        }
+
+        if (Integer.parseInt(jTextField10.getText()) < 0) {
+            JOptionPane.showMessageDialog(null, "Los decimales no pueden ser negativos");
+            jTextField10.setText("");
+            jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+            return;
+        }
+
+        int iteracion = 0;
+
+        double fb, fa;
+        //se obtiene el valor de la funcion en a y b
+        fa = evaluarFuncion(x6, x5, x4, x3, x2, x, c, a
+        );
+        fb = evaluarFuncion(x6, x5, x4, x3, x2, x, c, b);
+
+        //evaluar ahora con la funcion trigonometrica elegida
+        if (radioSeno.isSelected()) {
+            fa = Math.sin(fa);
+            fb = Math.sin(fb);
+        } else if (RadioCos.isSelected()) {
+            fa = Math.cos(fa);
+            fb = Math.cos(fb);
+        } else if (Radiotan.isSelected()) {
+            fa = Math.tan(fa);
+            fb = Math.tan(fb);
+        } else if (radioCot.isSelected()) {
+            fa = 1 / Math.tan(fa);
+            fb = 1 / Math.tan(fb);
+        } else if (radioCsc.isSelected()) {
+            fa = 1 / Math.sin(fa);
+            fb = 1 / Math.sin(fb);
+        } else if (radioSec.isSelected()) {
+            fa = 1 / Math.cos(fa);
+            fb = 1 / Math.cos(fb);
+        }
+
+        //validar si hay raiz en el intervalo
+        if (fa * fb > 0) {
+            JOptionPane.showMessageDialog(null, "No hay raiz en el intervalo");
+            return;
+        }
+        //se crea la variable para la raiz
+        double xr = 0;
+        double xrn = 0;
+        double fxr = 0;
+        double anterior = 0;
+
+        //se crea la variable para el error
+        double errorCalculado = 0;
+
+        //se crea la variable para la iteracion
+        int i = 1;
+
+        //ciclo para calcular la raiz
+        do {
+            //primera iteracion
+            if (i == 1) {
+                xr = ((fa*b) - (fb*a)) / (fa - fb);
+                //se evalua la funcion
+                fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+
+                //se remplaza el valor en a
+                anterior = a;
+                a = xr;
+                fa = fxr;
+                //se calcula el error
+                errorCalculado = Math.abs((a - anterior) / a)*100;
+
+                //se agrega a la tabla
+                modelo.addRow(new Object[]{i, redondear(xr, decimales), redondearError(errorCalculado)});
+
+                i++;
+
+
+            } else {
+                //se calcula la segunda raiz
+                xrn = b - (((fb*a)-(fb*b))/(fa-fb));
+                //se evalua la funcion
+                fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+
+
+                //se remplaza el valor en a
+                anterior = a;
+                a = xrn;
+                fa = fxr;
+                //se calcula el error
+                errorCalculado = Math.abs((a - anterior) / a)*100;
+                //se agrega a la tabla
+                modelo.addRow(new Object[]{i, redondear(xrn, decimales), redondearError(errorCalculado)});
+
+                i++;
+
+                //se valida el numero de iteraciones
+                if (i > iteraciones) {
+                    //mostrar en el mensaje que no se encontro la raiz en la iteracion 200, la raiz es : y el error relativo:
+                    JOptionPane.showMessageDialog(null, "No se encontró la raíz en la iteración 200, la raíz es: " + redondear(xrn, decimales) + " y el error relativo es: " + redondearError(errorCalculado), "Error", JOptionPane.ERROR_MESSAGE);
+
+                    break;
+                }
+
+
+
+
+            }
+        } while (errorCalculado > error);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
     }//GEN-LAST:event_btnCalcularActionPerformed
+
+    public static double obtenerValor(JTextField campo) {
+        String texto =" ";
+        texto = campo.getText().trim(); // Asegurarse de que no hay espacios en blanco
+        if (texto.isEmpty()) {
+            return 0.0; // Devuelve 0.0 si el campo de texto está vacío
+        } else {
+            return Double.parseDouble(texto);
+        }
+    }
+    private void resaltarCampo(JTextField campo) {
+        if (campo.getText().isEmpty()) {
+            campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        } else {
+            campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); // Restablecer borde si tiene un valor
+        }
+    }
+    //metodo para redondear error
+    public double redondearError(double valor) {
+        BigDecimal bd = new BigDecimal(valor);
+        bd = bd.setScale(2, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
+    //metodo para redondear
+    public double redondear(double valor, int decimales) {
+        BigDecimal bd = new BigDecimal(valor);
+        bd = bd.setScale(decimales, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
 
     private void RadioGradosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RadioGradosActionPerformed
         // TODO add your handling code here:
@@ -582,6 +829,60 @@ public class ReglaFalsa extends javax.swing.JFrame {
             DeciamlesGrado = null;
             MinutosGrado = null;
         }
+        //elimina los txtfield de piradian
+        if (numerador1 != null && denominador1 != null && numerador2 != null && denominador2 != null) {
+            getContentPane().remove(numerador1);
+            getContentPane().remove(denominador1);
+            getContentPane().remove(numerador2);
+            getContentPane().remove(denominador2);
+            numerador1 = null;
+            denominador1 = null;
+            numerador2 = null;
+            denominador2 = null;
+        }
+
+
+        //eliminar los txtfield de radianes
+        if (radian1 != null && radian2 != null) {
+            getContentPane().remove(radian1);
+            getContentPane().remove(radian2);
+            radian1 = null;
+            radian2 = null;
+        }
+
+        //eliminar los txtfield de grados
+        if (grados1 != null && grados2 != null) {
+            getContentPane().remove(grados1);
+            getContentPane().remove(grados2);
+            grados1 = null;
+            grados2 = null;
+        }
+
+        //eliminar los txtfield de grados
+        if (minutos1 != null && minutos2 != null) {
+            getContentPane().remove(minutos1);
+            getContentPane().remove(minutos2);
+            minutos1 = null;
+            minutos2 = null;
+        }
+
+        //eliminar los txtfield de grados
+        if (segundos1 != null && segundos2 != null) {
+            getContentPane().remove(segundos1);
+            getContentPane().remove(segundos2);
+            segundos1 = null;
+            segundos2 = null;
+        }
+
+        //eliminar los txtfield de grados
+        if (gradosnormales1 != null && gradosnormales2 != null) {
+            getContentPane().remove(gradosnormales1);
+            getContentPane().remove(gradosnormales2);
+            gradosnormales1 = null;
+            gradosnormales2 = null;
+        }
+
+
 
 
 
@@ -699,6 +1000,12 @@ public class ReglaFalsa extends javax.swing.JFrame {
         getContentPane().repaint();
 
 
+    }
+
+    //metodo para evaluar la funcion
+    public static double evaluarFuncion(double x6, double x5, double x4, double x3, double x2, double x, double c, double x0) {
+
+        return x6 * Math.pow(x0, 6) + x5 * Math.pow(x0, 5) + x4 * Math.pow(x0, 4) + x3 * Math.pow(x0, 3) + x2 * Math.pow(x0, 2) + x * x0 + c;
     }
 
 
