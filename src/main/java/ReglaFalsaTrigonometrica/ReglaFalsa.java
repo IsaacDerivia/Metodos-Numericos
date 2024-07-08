@@ -5,11 +5,12 @@
 package ReglaFalsaTrigonometrica;
 
 /**
- *
  * @author isaac
  */
 
 import javax.swing.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import javax.swing.table.TableModel;
 public class ReglaFalsa extends javax.swing.JFrame {
 
     private DefaultTableModel modelo;
+
     private JTable tabla;
     private JScrollPane scroll;
     ;
@@ -29,6 +31,15 @@ public class ReglaFalsa extends javax.swing.JFrame {
      */
     public ReglaFalsa() {
         initComponents();
+        modelo = new DefaultTableModel();
+        modelo.addColumn("Iteración");
+        modelo.addColumn("Raíz");
+        modelo.addColumn("Error Relativo");
+        tabla = new JTable(modelo);
+        scroll = new JScrollPane(tabla);
+        getContentPane().add(scroll);
+        scroll.setBounds(300, 150, 500, 300);
+        tabla.setBounds(300, 100, 500, 300);
     }
 
     /**
@@ -72,6 +83,10 @@ public class ReglaFalsa extends javax.swing.JFrame {
         radioSec = new javax.swing.JRadioButton();
         btnCalcular = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
+        modelo = new DefaultTableModel();
+        tabla = new JTable(modelo);
+        scroll = new JScrollPane(tabla);
+
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(900, 500));
@@ -82,43 +97,43 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
         jLabel1.setText("X⁶");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(51, 17, 11, 16);
+        jLabel1.setBounds(51, 17, 15, 19);
         getContentPane().add(btnx6);
-        btnx6.setBounds(20, 50, 64, 22);
+        btnx6.setBounds(20, 50, 64, 25);
 
         jLabel2.setText("x⁵");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(120, 20, 15, 16);
+        jLabel2.setBounds(120, 20, 15, 19);
         getContentPane().add(btnx5);
-        btnx5.setBounds(100, 50, 64, 22);
+        btnx5.setBounds(100, 50, 64, 25);
 
         jLabel3.setText("x⁴");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(210, 20, 10, 16);
+        jLabel3.setBounds(210, 20, 13, 19);
         getContentPane().add(btnx4);
-        btnx4.setBounds(180, 50, 64, 22);
+        btnx4.setBounds(180, 50, 64, 25);
 
         jLabel4.setText("x³");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(280, 20, 15, 16);
+        jLabel4.setBounds(280, 20, 15, 19);
         getContentPane().add(btnx3);
-        btnx3.setBounds(260, 50, 64, 22);
+        btnx3.setBounds(260, 50, 64, 25);
 
         jLabel5.setText("x²");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(370, 20, 10, 16);
+        jLabel5.setBounds(370, 20, 13, 19);
         getContentPane().add(btnx2);
-        btnx2.setBounds(340, 50, 64, 22);
+        btnx2.setBounds(340, 50, 64, 25);
 
         jLabel6.setText("x");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(440, 20, 15, 16);
+        jLabel6.setBounds(440, 20, 15, 19);
         getContentPane().add(btnx);
-        btnx.setBounds(420, 50, 64, 22);
+        btnx.setBounds(420, 50, 64, 25);
 
         jLabel7.setText("c");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(520, 20, 15, 16);
+        jLabel7.setBounds(520, 20, 15, 19);
 
         btnC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,7 +141,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnC);
-        btnC.setBounds(500, 50, 64, 22);
+        btnC.setBounds(500, 50, 64, 25);
 
         RadioRadianes.setText("Radianes");
         RadioRadianes.addActionListener(new java.awt.event.ActionListener() {
@@ -135,7 +150,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RadioRadianes);
-        RadioRadianes.setBounds(40, 220, 70, 21);
+        RadioRadianes.setBounds(40, 220, 83, 23);
 
         RadioGrados.setText("Grados");
         RadioGrados.addActionListener(new java.awt.event.ActionListener() {
@@ -143,48 +158,55 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 RadioGradosActionPerformed(evt);
             }
         });
-        //grupo de botones para radianes y grados
-        buttonGroup1.add(RadioRadianes);
-        buttonGroup1.add(RadioGrados);
-
         getContentPane().add(RadioGrados);
-        RadioGrados.setBounds(150, 220, 115, 21);
+        RadioGrados.setBounds(150, 220, 115, 23);
+        //grupo de botones para los radianes y grados
+        buttonGroup2.add(RadioRadianes);
+        buttonGroup2.add(RadioGrados);
 
         jLabel15.setText("Error");
         getContentPane().add(jLabel15);
-        jLabel15.setBounds(30, 380, 25, 16);
+        jLabel15.setBounds(30, 380, 35, 19);
         getContentPane().add(jTextField9);
-        jTextField9.setBounds(20, 420, 90, 22);
+        jTextField9.setBounds(20, 420, 90, 25);
 
         jLabel16.setText("Decimales");
         getContentPane().add(jLabel16);
-        jLabel16.setBounds(150, 390, 100, 16);
+        jLabel16.setBounds(150, 390, 100, 19);
         getContentPane().add(jTextField10);
-        jTextField10.setBounds(140, 420, 100, 22);
+        jTextField10.setBounds(140, 420, 100, 25);
 
         radioSeno.setText("Sen");
         getContentPane().add(radioSeno);
-        radioSeno.setBounds(60, 130, 42, 21);
+        radioSeno.setBounds(40, 130, 60, 23);
 
         RadioCos.setText("Cos");
         getContentPane().add(RadioCos);
-        RadioCos.setBounds(130, 130, 43, 21);
+        RadioCos.setBounds(110, 130, 70, 23);
 
         Radiotan.setText("Tan");
         getContentPane().add(Radiotan);
-        Radiotan.setBounds(200, 130, 42, 21);
+        Radiotan.setBounds(180, 130, 70, 23);
 
         radioCot.setText("Cot");
         getContentPane().add(radioCot);
-        radioCot.setBounds(270, 130, 47, 21);
+        radioCot.setBounds(250, 130, 70, 23);
 
         radioCsc.setText("Csc");
         getContentPane().add(radioCsc);
-        radioCsc.setBounds(380, 130, 42, 21);
+        radioCsc.setBounds(420, 130, 80, 23);
 
         radioSec.setText("Sec");
         getContentPane().add(radioSec);
-        radioSec.setBounds(330, 130, 41, 21);
+        radioSec.setBounds(320, 130, 70, 23);
+        //grupo de botones para las funciones
+        buttonGroup1.add(radioSeno);
+        buttonGroup1.add(RadioCos);
+        buttonGroup1.add(Radiotan);
+        buttonGroup1.add(radioCot);
+        buttonGroup1.add(radioCsc);
+        buttonGroup1.add(radioSec);
+
 
         btnCalcular.setText("Calcular");
         btnCalcular.addActionListener(new java.awt.event.ActionListener() {
@@ -193,25 +215,19 @@ public class ReglaFalsa extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCalcular);
-        btnCalcular.setBounds(630, 50, 100, 23);
+        btnCalcular.setBounds(630, 50, 100, 25);
+
 
         btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnLimpiar);
-        btnLimpiar.setBounds(630, 90, 100, 23);
+        btnLimpiar.setBounds(630, 90, 100, 25);
 
         pack();
-
-        // Inicializa la tabla y el JScrollPane al principio
-        modelo = new DefaultTableModel();
-        modelo.addColumn("Iteración");
-        modelo.addColumn("raiz");
-        modelo.addColumn("error");
-        tabla = new JTable(modelo);
-        scroll = new JScrollPane(tabla);
-        scroll.setBounds(500, 110, 380, 500);
-        add(scroll);
-
-
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -452,11 +468,13 @@ public class ReglaFalsa extends javax.swing.JFrame {
 
         //se posicionan los nuevos JtextField
         numerador1.setBounds(40, 300, 100, 23);
-        denominador1.setBounds(150, 300, 100, 23);
+        denominador1.setBounds(40, 350, 100, 23);
+
 
         //posicion
-        numerador2.setBounds(40, 350, 100, 23);
+        numerador2.setBounds(150, 300, 100, 23);
         denominador2.setBounds(150, 350, 100, 23);
+
 
         //se actualiza el panel
         getContentPane().revalidate();
@@ -476,8 +494,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
         double c = 0;
 
 
-
-
         try {
 
             // Obtener los valores de los campos de texto y convertirlos a números
@@ -489,17 +505,24 @@ public class ReglaFalsa extends javax.swing.JFrame {
             x = obtenerValor(btnx);
             c = obtenerValor(btnC);
 
+            esNumero(btnx6);
+            esNumero(btnx5);
+            esNumero(btnx4);
+            esNumero(btnx3);
+            esNumero(btnx2);
+            esNumero(btnx);
+            esNumero(btnC);
 
 
         } catch (NumberFormatException e) {
             // Mostrar mensaje de error si alguno de los campos no contiene un valor numérico válido
             JOptionPane.showMessageDialog(null, "Ingrese un valor válido en todos los campos.");
+
+            //especificar donde esta el error
+
+
+            return;
         }
-
-
-
-
-
 
 
         //se optiene la opcion que eligio el usuario
@@ -538,17 +561,26 @@ public class ReglaFalsa extends javax.swing.JFrame {
                     if (valordenominador1 == 0) {
                         denominador1.setText("");
                         denominador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                        return;
+                    } else {
+                        denominador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
                     }
                     if (valordenominador2 == 0) {
                         denominador2.setText("");
                         denominador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+                        return;
+                    } else {
+                        denominador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
                     }
                     return;
                 }
 
                 //se hace la operacion para asignarle los valores de pi radian a las variables a y b
                 a = ((valornumerador1 / valordenominador1) * Math.PI);
-                b = ((valornumerador1 / valordenominador1) * Math.PI);
+                b = ((valornumerador2 / valordenominador2) * Math.PI);
+
+                System.out.println(a);
+                System.out.println(b);
 
 
             } catch (Exception e) {
@@ -578,6 +610,15 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 a = Math.toRadians(valorgrados1);
                 b = Math.toRadians(valorgrados2);
 
+                System.out.println(a);
+                System.out.println(b);
+
+                //volver los txtfield a su color original
+                gradosnormales1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                gradosnormales2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+
+
             } catch (Exception e) {
                 //mensaje de error
                 JOptionPane.showMessageDialog(null, "Ingrese un valor valido");
@@ -602,6 +643,17 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 //se hace la operacion para asignarle los valores de grados a las variables a y b
                 a = Math.toRadians((valorgrados1 + (valorminutos1 / 60) + (valorsegundos1 / 3600)));
                 b = Math.toRadians((valorgrados2 + (valorminutos2 / 60) + (valorsegundos2 / 3600)));
+                System.out.println(a);
+                System.out.println(b);
+
+                //volver los txtfield a su color original
+                grados1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                minutos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                segundos1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                grados2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                minutos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                segundos2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
 
 
             } catch (Exception e) {
@@ -634,6 +686,11 @@ public class ReglaFalsa extends javax.swing.JFrame {
             error = Double.parseDouble(jTextField9.getText());
             decimales = Integer.parseInt(jTextField10.getText());
 
+            //volver los txtfield a su color original
+            jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+            jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+
 
         } catch (Exception e) {
             //mensaje de error
@@ -652,6 +709,8 @@ public class ReglaFalsa extends javax.swing.JFrame {
             jTextField9.setText("");
             jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             return;
+        } else {
+            jTextField9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         }
 
         if (Integer.parseInt(jTextField10.getText()) < 0) {
@@ -659,14 +718,15 @@ public class ReglaFalsa extends javax.swing.JFrame {
             jTextField10.setText("");
             jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
             return;
+        } else {
+            jTextField10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         }
 
         int iteracion = 0;
 
         double fb, fa;
         //se obtiene el valor de la funcion en a y b
-        fa = evaluarFuncion(x6, x5, x4, x3, x2, x, c, a
-        );
+        fa = evaluarFuncion(x6, x5, x4, x3, x2, x, c, a);
         fb = evaluarFuncion(x6, x5, x4, x3, x2, x, c, b);
 
         //evaluar ahora con la funcion trigonometrica elegida
@@ -689,19 +749,27 @@ public class ReglaFalsa extends javax.swing.JFrame {
             fa = 1 / Math.cos(fa);
             fb = 1 / Math.cos(fb);
         }
+        System.out.println("intervalo 1");
+        System.out.println("fa: " + fa);
+        System.out.println("fb: " + fb);
 
         //validar si hay raiz en el intervalo
         if (fa * fb > 0) {
             JOptionPane.showMessageDialog(null, "No hay raiz en el intervalo");
             return;
         }
+
+        //se limpia la tabla existente
+        modelo.setRowCount(0);
+
+
         //se crea la variable para la raiz
         double xr = 0;
         double xrn = 0;
         double fxr = 0;
         double anterior = 0;
 
-        //se crea la variable para el error
+        //se crea la variable para el error|
         double errorCalculado = 0;
 
         //se crea la variable para la iteracion
@@ -711,38 +779,91 @@ public class ReglaFalsa extends javax.swing.JFrame {
         do {
             //primera iteracion
             if (i == 1) {
-                xr = ((fa*b) - (fb*a)) / (fa - fb);
+                xr = ((fa * b) - (fb * a)) / (fa - fb);
                 //se evalua la funcion
                 fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+                //evaluar fxr
+                if (radioSeno.isSelected()) {
+                    fxr = Math.sin(fxr);
+                } else if (RadioCos.isSelected()) {
+                    fxr = Math.cos(fxr);
+                } else if (Radiotan.isSelected()) {
+                    fxr = Math.tan(fxr);
+                } else if (radioCot.isSelected()) {
+                    fxr = 1 / Math.tan(fxr);
+                } else if (radioCsc.isSelected()) {
+                    fxr = 1 / Math.sin(fxr);
+                } else if (radioSec.isSelected()) {
+                    fxr = 1 / Math.cos(fxr);
+                } else {
+                    fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+                }
 
                 //se remplaza el valor en a
                 anterior = a;
                 a = xr;
                 fa = fxr;
+
+
                 //se calcula el error
-                errorCalculado = Math.abs((a - anterior) / a)*100;
+                errorCalculado = Math.abs((a - anterior) / a) * 100;
+
+
+                //imprimir intervalo fa y fb
+                System.out.println("intervalo: " + (i + 1));
+                System.out.println("fa: " + fa);
+                System.out.println("fb: " + fb);
+
 
                 //se agrega a la tabla
                 modelo.addRow(new Object[]{i, redondear(xr, decimales), redondearError(errorCalculado)});
+
 
                 i++;
 
 
             } else {
                 //se calcula la segunda raiz
-                xrn = b - (((fb*a)-(fb*b))/(fa-fb));
+                xrn = b - (((fb * a) - (fb * b)) / (fa - fb));
                 //se evalua la funcion
-                fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+                fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xrn);
+
+                //evaluar fxr
+                if (radioSeno.isSelected()) {
+                    fxr = Math.sin(fxr);
+                } else if (RadioCos.isSelected()) {
+                    fxr = Math.cos(fxr);
+                } else if (Radiotan.isSelected()) {
+                    fxr = Math.tan(fxr);
+                } else if (radioCot.isSelected()) {
+                    fxr = 1 / Math.tan(fxr);
+                } else if (radioCsc.isSelected()) {
+                    fxr = 1 / Math.sin(fxr);
+                } else if (radioSec.isSelected()) {
+                    fxr = 1 / Math.cos(fxr);
+                } else {
+                    fxr = evaluarFuncion(x6, x5, x4, x3, x2, x, c, xr);
+                }
 
 
                 //se remplaza el valor en a
                 anterior = a;
                 a = xrn;
                 fa = fxr;
+
+
+                System.out.println("intervalo: " + (i + 1));
+                System.out.println("fa: " + fa);
+                System.out.println("fb: " + fb);
+
+
                 //se calcula el error
-                errorCalculado = Math.abs((a - anterior) / a)*100;
+                errorCalculado = Math.abs((a - anterior) / a) * 100;
+
+
                 //se agrega a la tabla
                 modelo.addRow(new Object[]{i, redondear(xrn, decimales), redondearError(errorCalculado)});
+
 
                 i++;
 
@@ -755,35 +876,19 @@ public class ReglaFalsa extends javax.swing.JFrame {
                 }
 
 
-
-
             }
         } while (errorCalculado > error);
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        //repinta la tabla
+        getContentPane().revalidate();
+        getContentPane().repaint();
 
 
     }//GEN-LAST:event_btnCalcularActionPerformed
 
     public static double obtenerValor(JTextField campo) {
-        String texto =" ";
+        String texto = " ";
         texto = campo.getText().trim(); // Asegurarse de que no hay espacios en blanco
         if (texto.isEmpty()) {
             return 0.0; // Devuelve 0.0 si el campo de texto está vacío
@@ -791,6 +896,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             return Double.parseDouble(texto);
         }
     }
+
     private void resaltarCampo(JTextField campo) {
         if (campo.getText().isEmpty()) {
             campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
@@ -798,6 +904,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
             campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0))); // Restablecer borde si tiene un valor
         }
     }
+
     //metodo para redondear error
     public double redondearError(double valor) {
         BigDecimal bd = new BigDecimal(valor);
@@ -883,10 +990,6 @@ public class ReglaFalsa extends javax.swing.JFrame {
         }
 
 
-
-
-
-
         //se crean los nuevos JradioButton
         DeciamlesGrado = new JRadioButton("Decimales en grados");
         MinutosGrado = new JRadioButton("DMS");
@@ -955,6 +1058,20 @@ public class ReglaFalsa extends javax.swing.JFrame {
         getContentPane().repaint();
     }
 
+    //metodo que recibe un txtfield y verifica si es un numero y no una letra o caracter
+    public void esNumero(JTextField campo) {
+        try {
+            Double.parseDouble(campo.getText());
+            //volver negro el txtfiel
+            campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        } catch (NumberFormatException e) {
+            campo.setText("");
+            //volver rojo el txtfield
+            campo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 0)));
+        }
+    }
+
     //evento de MinutosGrado
     private void MinutosGradoActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
@@ -1008,6 +1125,84 @@ public class ReglaFalsa extends javax.swing.JFrame {
         return x6 * Math.pow(x0, 6) + x5 * Math.pow(x0, 5) + x4 * Math.pow(x0, 4) + x3 * Math.pow(x0, 3) + x2 * Math.pow(x0, 2) + x * x0 + c;
     }
 
+    //btn limpiar
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        //limpiar los txtfield
+        btnx6.setText("");
+        btnx5.setText("");
+        btnx4.setText("");
+        btnx3.setText("");
+        btnx2.setText("");
+        btnx.setText("");
+        btnC.setText("");
+        jTextField9.setText("");
+        jTextField10.setText("");
+
+        //limpiar los txtfield de radianes
+        if (radian1 != null && radian2 != null) {
+            radian1.setText("");
+            radian2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (grados1 != null && grados2 != null) {
+            grados1.setText("");
+            grados2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (minutos1 != null && minutos2 != null) {
+            minutos1.setText("");
+            minutos2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (segundos1 != null && segundos2 != null) {
+            segundos1.setText("");
+            segundos2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (gradosnormales1 != null && gradosnormales2 != null) {
+            gradosnormales1.setText("");
+            gradosnormales2.setText("");
+        }
+
+        //limpiar los txtfield de fraccion
+        if (numerador1 != null && denominador1 != null && numerador2 != null && denominador2 != null) {
+            numerador1.setText("");
+            denominador1.setText("");
+            numerador2.setText("");
+            denominador2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (grados1 != null && grados2 != null && minutos1 != null && minutos2 != null && segundos1 != null && segundos2 != null) {
+            grados1.setText("");
+            grados2.setText("");
+            minutos1.setText("");
+            minutos2.setText("");
+            segundos1.setText("");
+            segundos2.setText("");
+        }
+
+        //limpiar los txtfield de grados
+        if (gradosnormales1 != null && gradosnormales2 != null) {
+            gradosnormales1.setText("");
+            gradosnormales2.setText("");
+        }
+
+        //limpiar los button group
+        buttonGroup1.clearSelection();
+        buttonGroup2.clearSelection();
+        buttonGroup3.clearSelection();
+        buttonGroup4.clearSelection();
+
+        //limpiar la tabla
+        modelo.setRowCount(0);
+
+    }
 
 
     /**
@@ -1017,7 +1212,7 @@ public class ReglaFalsa extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
