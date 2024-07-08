@@ -5,6 +5,8 @@ package metodoResiduos;
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  * @author isaac
  */
@@ -231,6 +233,11 @@ public class MeodoDeLosResiduos extends javax.swing.JFrame {
         //btnCalcular queda deshabilitado
         btnCalcular.setEnabled(false);
 
+        DefaultTableModel model = new DefaultTableModel(new Object[][]{}, new String[]{"", "Intervalos"});
+
+
+
+
 
         //se valida que los txtfield sean double
         double x6 = validarTxtField(X6);
@@ -246,15 +253,22 @@ public class MeodoDeLosResiduos extends javax.swing.JFrame {
         int decimales = validarTxtFieldINT(txtDecimales);
         double error = validarTxtField(btnError);
 
+        //se crea un objeto de la clase encontrarIntervalos
+        encontrarIntervalos intervalos = new encontrarIntervalos(c);
 
-        //se crea la tabla para mostrar los intervalos
-        tableIntervalos.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                },
-                new String[]{
-                        "", "intervalos"
-                }
-        ));
+        //se llama al metodo encontrarIntervalos
+        double[] intervalosArray = intervalos.encontrarIntervalos();
+
+
+
+
+        for (double intervalo : intervalosArray) {
+            model.addRow(new Object[]{null, intervalo});
+        }
+
+        tableIntervalos.setModel(model);
+
+
         jScrollPane1.setViewportView(tableIntervalos);
 
         getContentPane().add(jScrollPane1);
