@@ -1,5 +1,7 @@
 package metodoResiduos;
 
+import javax.swing.*
+
 public class Residuos {
     private double x6;
     private double x5;
@@ -10,6 +12,8 @@ public class Residuos {
     private double c;
     private double a;
     private double b;
+
+    JTable tabla;
 
     public Residuos(double x6, double x5, double x4, double x3, double x2, double x, double c, double a, double b) {
         this.x6 = x6;
@@ -23,7 +27,25 @@ public class Residuos {
         this.b = b;
     }
 
-    //clase que se encargar de encontrar los residuos de la funcion
+    public Residuos(JTable tabla){
+        this.tabla = tabla;
+    }
+
+
+    public double encontrarvalor
+
+
+
+    /*
+    *
+    * metodo para hacer el calculo de ruffini
+    *  donde se toma el valor de las x
+    *
+    * */
+
+    //calcular metodo de los residuos
+
+
 
 
 

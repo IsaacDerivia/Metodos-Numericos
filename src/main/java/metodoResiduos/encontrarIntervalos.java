@@ -34,10 +34,11 @@ public class encontrarIntervalos {
         // Crear arreglo para almacenar primero divisores negativos y luego positivos
         double[] intervalos = new double[divisoresList.size() * 2];
         int index = 0;
-        // Agregar primero los negativos
-        for (Double divisor : divisoresList) {
-            intervalos[index++] = -divisor;
+        // Agregar primero de menor a mayor los negativos
+        for (int i = divisoresList.size() - 1; i >= 0; i--) {
+            intervalos[index++] = -divisoresList.get(i);
         }
+
         // Luego agregar los positivos
         for (Double divisor : divisoresList) {
             intervalos[index++] = divisor;
