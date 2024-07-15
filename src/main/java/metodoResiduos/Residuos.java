@@ -1,6 +1,6 @@
 package metodoResiduos;
 
-import javax.swing.*
+import javax.swing.*;
 
 public class Residuos {
     private double x6;
@@ -32,7 +32,12 @@ public class Residuos {
     }
 
 
-    public double encontrarvalor
+    public double encontrarvalor(){
+        //calcular la funcion con el valor de x
+        double resultado = 0;
+        resultado = (a*Math.pow(x,6))+(b*Math.pow(x,5))+(c*Math.pow(x,4))+(x3*Math.pow(x,3))+(x2*Math.pow(x,2))+(x*x)+c;
+        return resultado;
+    }
 
 
 

@@ -279,9 +279,8 @@ public class MeodoDeLosResiduos extends JFrame {
 
             Residuos residuos = new Residuos(x6, x5, x4, x3, x2, x1, c, a, b);
 
-           double fa = residuos.encontrarValor();
-           double fb = residuos.encontrarValorB();
-
+           double fa = residuos.encontrarvalor();
+           double fb = residuos.encontrarvalor();
               // Se verifica si la multiplicación de fa y fb es menor a 0
             if (fa * fb < 0) {
                 /*
