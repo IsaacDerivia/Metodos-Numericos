@@ -24,6 +24,7 @@ public class MeodoDeLosResiduos extends JFrame {
      */
     public MeodoDeLosResiduos() {
         initComponents();
+        tableIntervalos = new JTable();
     }
 
     private JTable tableIntervalos;
@@ -39,198 +40,247 @@ public class MeodoDeLosResiduos extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton2 = new JButton();
-        jPanel1 = new JPanel();
-        lblTitulo = new JLabel();
-        btnCalcular = new JButton();
-        btnLimpiar = new JButton();
-        jLabel1 = new JLabel();
-        X6 = new JTextField();
-        jLabel2 = new JLabel();
-        txtx5 = new JTextField();
-        jLabel3 = new JLabel();
-        txtX4 = new JTextField();
-        jLabel4 = new JLabel();
-        txtx3 = new JTextField();
-        jLabel5 = new JLabel();
-        txtX2 = new JTextField();
-        x = new JLabel();
-        txtX = new JTextField();
-        jLabel7 = new JLabel();
-        jTextField7 = new JTextField();
-        jLabel8 = new JLabel();
-        txtC = new JTextField();
-        jLabel6 = new JLabel();
-        txtDecimales = new JTextField();
-        jLabel9 = new JLabel();
-        btnError = new JTextField();
-        btnIngresarIntervalos = new JButton();
-        btnPorporcionarIntervalos = new JButton();
-        jScrollPane2 = new JScrollPane();
-        tableResultados = new JTable();
+        jButton2 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        lblTitulo = new javax.swing.JLabel();
+        btnCalcular = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        X6 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtx5 = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        txtX4 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        txtx3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        txtX2 = new javax.swing.JTextField();
+        x = new javax.swing.JLabel();
+        txtX = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jTextField7 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        txtC = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        txtDecimales = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        btnError = new javax.swing.JTextField();
+        btnPorporcionarIntervalos = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tableResultados = new javax.swing.JTable();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        txta = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtb = new javax.swing.JTextField();
 
         jButton2.setText("jButton2");
 
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("metodo de los residuos");
-        setBackground(new Color(255, 255, 255));
-        setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
-        setFont(new Font("Ubuntu", 0, 12)); // NOI18N
-        setMinimumSize(new Dimension(1180, 500));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setFont(new java.awt.Font("Ubuntu", 0, 12)); // NOI18N
+        setMinimumSize(new java.awt.Dimension(1180, 500));
         setResizable(false);
-        setSize(new Dimension(1180, 500));
+        setSize(new java.awt.Dimension(1180, 500));
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new Color(51, 51, 51));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
 
-        lblTitulo.setFont(new Font("Ubuntu", 0, 15)); // NOI18N
-        lblTitulo.setForeground(new Color(255, 255, 255));
+        lblTitulo.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(255, 255, 255));
         lblTitulo.setText("METODO DE LOS RESIDUOS");
 
-        btnCalcular.setBackground(new Color(0, 0, 0));
-        btnCalcular.setFont(new Font("Ubuntu", 0, 15)); // NOI18N
-        btnCalcular.setForeground(new Color(255, 255, 255));
+        btnCalcular.setBackground(new java.awt.Color(0, 0, 0));
+        btnCalcular.setFont(new java.awt.Font("Ubuntu", 0, 15)); // NOI18N
+        btnCalcular.setForeground(new java.awt.Color(255, 255, 255));
         btnCalcular.setText("Calcular");
         btnCalcular.setToolTipText("");
         btnCalcular.setBorder(null);
         btnCalcular.setBorderPainted(false);
         btnCalcular.setMargin(null);
+        btnCalcular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularActionPerformed(evt);
+            }
+        });
 
-        btnLimpiar.setBackground(new Color(0, 0, 0));
-        btnLimpiar.setForeground(new Color(255, 255, 255));
+        btnLimpiar.setBackground(new java.awt.Color(0, 0, 0));
+        btnLimpiar.setForeground(new java.awt.Color(255, 255, 255));
         btnLimpiar.setText("Limpiar");
         btnLimpiar.setBorder(null);
         btnLimpiar.setBorderPainted(false);
 
-        GroupLayout jPanel1Layout = new GroupLayout(jPanel1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
-                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(lblTitulo, GroupLayout.PREFERRED_SIZE, 200, GroupLayout.PREFERRED_SIZE)
-                                .addGap(187, 187, 187)
-                                .addComponent(btnCalcular)
-                                .addGap(83, 83, 83)
-                                .addComponent(btnLimpiar)
-                                .addContainerGap(338, Short.MAX_VALUE))
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(168, 168, 168)
+                .addComponent(btnCalcular)
+                .addGap(83, 83, 83)
+                .addComponent(btnLimpiar)
+                .addContainerGap(338, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
-                jPanel1Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addGroup(jPanel1Layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                        .addComponent(lblTitulo)
-                                        .addComponent(btnCalcular)
-                                        .addComponent(btnLimpiar))
-                                .addContainerGap(21, Short.MAX_VALUE))
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTitulo)
+                    .addComponent(btnCalcular)
+                    .addComponent(btnLimpiar))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 927, 47);
+        jPanel1.setBounds(0, 0, 916, 49);
 
         jLabel1.setText("x⁶");
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(30, 70, 13, 18);
+        jLabel1.setBounds(30, 70, 10, 16);
         getContentPane().add(X6);
-        X6.setBounds(10, 100, 50, 24);
+        X6.setBounds(10, 100, 50, 22);
 
         jLabel2.setText("x⁵");
         getContentPane().add(jLabel2);
-        jLabel2.setBounds(90, 70, 13, 18);
+        jLabel2.setBounds(90, 70, 10, 16);
         getContentPane().add(txtx5);
-        txtx5.setBounds(70, 100, 50, 24);
+        txtx5.setBounds(70, 100, 50, 22);
 
         jLabel3.setText("x⁴");
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(150, 70, 13, 18);
+        jLabel3.setBounds(150, 70, 10, 16);
         getContentPane().add(txtX4);
-        txtX4.setBounds(130, 100, 50, 24);
+        txtX4.setBounds(130, 100, 50, 22);
 
         jLabel4.setText("x³");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(210, 70, 12, 18);
+        jLabel4.setBounds(210, 70, 10, 16);
         getContentPane().add(txtx3);
-        txtx3.setBounds(190, 100, 50, 24);
+        txtx3.setBounds(190, 100, 50, 22);
 
         jLabel5.setText("x²");
         getContentPane().add(jLabel5);
-        jLabel5.setBounds(270, 70, 12, 18);
+        jLabel5.setBounds(270, 70, 10, 16);
         getContentPane().add(txtX2);
-        txtX2.setBounds(250, 100, 50, 24);
+        txtX2.setBounds(250, 100, 50, 22);
 
         x.setText("x");
         getContentPane().add(x);
-        x.setBounds(330, 70, 7, 18);
+        x.setBounds(330, 70, 6, 16);
         getContentPane().add(txtX);
-        txtX.setBounds(310, 100, 50, 24);
+        txtX.setBounds(310, 100, 50, 22);
 
         jLabel7.setText("x⁶");
         getContentPane().add(jLabel7);
-        jLabel7.setBounds(30, 70, 13, 18);
+        jLabel7.setBounds(30, 70, 10, 16);
         getContentPane().add(jTextField7);
-        jTextField7.setBounds(10, 100, 50, 24);
+        jTextField7.setBounds(10, 100, 50, 22);
 
         jLabel8.setText("C");
         getContentPane().add(jLabel8);
-        jLabel8.setBounds(390, 70, 11, 18);
+        jLabel8.setBounds(390, 70, 8, 16);
         getContentPane().add(txtC);
-        txtC.setBounds(370, 100, 50, 24);
+        txtC.setBounds(370, 100, 50, 22);
 
         jLabel6.setText("Ingresar numero de decimales");
         getContentPane().add(jLabel6);
-        jLabel6.setBounds(10, 150, 220, 18);
+        jLabel6.setBounds(10, 150, 220, 16);
         getContentPane().add(txtDecimales);
-        txtDecimales.setBounds(230, 150, 270, 24);
+        txtDecimales.setBounds(230, 150, 270, 22);
 
         jLabel9.setText("Ingresar error relativo");
         getContentPane().add(jLabel9);
-        jLabel9.setBounds(20, 220, 150, 18);
+        jLabel9.setBounds(20, 220, 150, 16);
         getContentPane().add(btnError);
-        btnError.setBounds(230, 220, 270, 24);
-
-        btnIngresarIntervalos.setText("Ingresar Intervalos");
-        btnIngresarIntervalos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
-                btnIngresarIntervalosActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnIngresarIntervalos);
-        btnIngresarIntervalos.setBounds(500, 90, 170, 24);
+        btnError.setBounds(230, 220, 270, 22);
 
         btnPorporcionarIntervalos.setText("Proporcionar intervalos");
-        btnPorporcionarIntervalos.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent evt) {
+        btnPorporcionarIntervalos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPorporcionarIntervalosActionPerformed(evt);
             }
         });
         getContentPane().add(btnPorporcionarIntervalos);
-        btnPorporcionarIntervalos.setBounds(680, 90, 190, 24);
+        btnPorporcionarIntervalos.setBounds(520, 90, 440, 23);
 
-        tableResultados.setModel(new DefaultTableModel(
-                new Object[][]{
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null},
-                        {null, null, null}
-                },
-                new String[]{
-                        "iteracion", "raiz", "error"
-                }
+        tableResultados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "iteracion", "raiz", "error"
+            }
         ));
         jScrollPane2.setViewportView(tableResultados);
 
         getContentPane().add(jScrollPane2);
-        jScrollPane2.setBounds(520, 130, 340, 280);
+        jScrollPane2.setBounds(520, 130, 440, 320);
+
+        jLabel10.setText("Intervalos:");
+        getContentPane().add(jLabel10);
+        jLabel10.setBounds(30, 280, 70, 16);
+
+        jLabel11.setText("a");
+        getContentPane().add(jLabel11);
+        jLabel11.setBounds(30, 330, 6, 16);
+        getContentPane().add(txta);
+        txta.setBounds(20, 360, 64, 22);
+
+        jLabel12.setText("b");
+        getContentPane().add(jLabel12);
+        jLabel12.setBounds(130, 340, 7, 16);
+        getContentPane().add(txtb);
+        txtb.setBounds(120, 360, 64, 22);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresarIntervalosActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnIngresarIntervalosActionPerformed
-        // TODO add your handling code here:
+    private void btnCalcularActionPerformed(ActionEvent evt) {
+        // Validar y obtener los coeficientes del polinomio
+        double x6 = validarTxtField(X6);
+        double x5 = validarTxtField(txtx5);
+        double x4 = validarTxtField(txtX4);
+        double x3 = validarTxtField(txtx3);
+        double x2 = validarTxtField(txtX2);
+        double x1 = validarTxtField(txtX);
+        double c = validarTxtField(txtC);
 
 
-    }//GEN-LAST:event_btnIngresarIntervalosActionPerformed
+        // Crear el polinomio
+        Polinomio polinomio = new Polinomio(x6, x5, x4, x3, x2, x1, c);
+
+        // Validar y obtener el número de decimales y el error permitido
+        int decimales = validarTxtFieldINT(txtDecimales);
+        double errorPermitido = validarTxtField(btnError);
+
+        // Validar y obtener los intervalos
+        double a = validarTxtField(txta);
+        double b = validarTxtField(txtb);
+
+        // Crear la instancia del método de bisección
+        Biseccion biseccion = new Biseccion(polinomio, errorPermitido);
+
+        // Encontrar las raíces
+        ArrayList<ResultadoBiseccion> resultados = biseccion.encontrarRaices(a, b);
+
+        // Mostrar los resultados en la tabla
+        DefaultTableModel model = new DefaultTableModel(new Object[][]{}, new String[]{"Iteración", "Aproximación", "Error relativo"});
+        for (ResultadoBiseccion resultado : resultados) {
+            model.addRow(new Object[]{resultado.iteracion, String.format("%." + decimales + "f", resultado.aproximacion), String.format("%." + decimales + "f", resultado.errorRelativo)});
+        }
+        tableResultados.setModel(model);
+
+
+
+    }
 
     private void btnPorporcionarIntervalosActionPerformed(ActionEvent evt) {//GEN-FIRST:event_btnPorporcionarIntervalosActionPerformed
         // TODO add your handling code here:
@@ -253,9 +303,6 @@ public class MeodoDeLosResiduos extends JFrame {
         double x0 = validarTxtField(jTextField7);
         double c = validarTxtField(txtC);
 
-        //se valida que los txtfield sean double
-        int decimales = validarTxtFieldINT(txtDecimales);
-        double error = validarTxtField(btnError);
 
         //se crea un objeto de la clase encontrarIntervalos
         encontrarIntervalos intervalos = new encontrarIntervalos(c);
@@ -280,7 +327,11 @@ public class MeodoDeLosResiduos extends JFrame {
             Residuos residuos = new Residuos(x6, x5, x4, x3, x2, x1, c, a, b);
 
            double fa = residuos.encontrarvalor();
-           double fb = residuos.encontrarvalor();
+           double fb = residuos.encontrarvalorb();
+
+
+            System.out.println("Intervalo [" + a + ", " + b + "]: fa = " + fa + ", fb = " + fb);
+
               // Se verifica si la multiplicación de fa y fb es menor a 0
             if (fa * fb < 0) {
                 /*
@@ -299,10 +350,9 @@ public class MeodoDeLosResiduos extends JFrame {
 
         validacion.add(" ");
 
-        //agregar en la tabla en la primera fila va validacion y el la segunda intervalos, pero si validacion ya no tiene elementos no se agrega nada
-        for (int j = 0; j < intervalosArray.length; j++) {
-            model.addRow(new Object[]{validacion.get(j), intervalosArray[j]});
-
+        // Agregar las filas al modelo de la tabla
+        for (int j = 0; j < intervalosArray.length - 1; j++) {
+            model.addRow(new Object[]{validacion.get(j), "[" + intervalosArray[j] + ", " + intervalosArray[j + 1] + "]"});
         }
 
         tableIntervalos.setModel(model);
@@ -393,34 +443,38 @@ public class MeodoDeLosResiduos extends JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private JTextField X6;
-    private JButton btnCalcular;
-    private JTextField btnError;
-    private JButton btnIngresarIntervalos;
-    private JButton btnLimpiar;
-    private JButton btnPorporcionarIntervalos;
-    private JButton jButton2;
-    private JLabel jLabel1;
-    private JLabel jLabel2;
-    private JLabel jLabel3;
-    private JLabel jLabel4;
-    private JLabel jLabel5;
-    private JLabel jLabel6;
-    private JLabel jLabel7;
-    private JLabel jLabel8;
-    private JLabel jLabel9;
-    private JPanel jPanel1;
-    private JScrollPane jScrollPane2;
-    private JTextField jTextField7;
-    private JLabel lblTitulo;
-    private JTable tableResultados;
-    private JTextField txtC;
-    private JTextField txtDecimales;
-    private JTextField txtX;
-    private JTextField txtX2;
-    private JTextField txtX4;
-    private JTextField txtx3;
-    private JTextField txtx5;
-    private JLabel x;
+    private javax.swing.JTextField X6;
+    private javax.swing.JButton btnCalcular;
+    private javax.swing.JTextField btnError;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnPorporcionarIntervalos;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTextField jTextField7;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tableResultados;
+    private javax.swing.JTextField txtC;
+    private javax.swing.JTextField txtDecimales;
+    private javax.swing.JTextField txtX;
+    private javax.swing.JTextField txtX2;
+    private javax.swing.JTextField txtX4;
+    private javax.swing.JTextField txta;
+    private javax.swing.JTextField txtb;
+    private javax.swing.JTextField txtx3;
+    private javax.swing.JTextField txtx5;
+    private javax.swing.JLabel x;
     // End of variables declaration//GEN-END:variables
 }

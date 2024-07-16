@@ -32,11 +32,18 @@ public class Residuos {
     }
 
 
-    public double encontrarvalor(){
-        //calcular la funcion con el valor de x
+    public double encontrarvalor() {
+        //calcula el valor de una funcion fx
+        return (x6 * Math.pow(a, 6)) + (x5 * Math.pow(a, 5)) + (x4 * Math.pow(a, 4)) + (x3 * Math.pow(a, 3)) + (x2 * Math.pow(a, 2)) + (x * Math.pow(a, 1)) + c;
+    }
+    public double encontrarvalorb(){
+        //calcula el valor de una funcion fx
         double resultado = 0;
-        resultado = (a*Math.pow(x,6))+(b*Math.pow(x,5))+(c*Math.pow(x,4))+(x3*Math.pow(x,3))+(x2*Math.pow(x,2))+(x*x)+c;
+        resultado = (x6*Math.pow(b,6))+(x5*Math.pow(b,5))+(x4*Math.pow(b,4))+(x3*Math.pow(b,3))+(x2*Math.pow(b,2))+(x*b)+c;
         return resultado;
+
+
+
     }
 
 

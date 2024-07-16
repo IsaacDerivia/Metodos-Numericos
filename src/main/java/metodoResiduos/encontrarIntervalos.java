@@ -23,6 +23,8 @@ public class encontrarIntervalos {
      * @return Un arreglo de doubles que contiene primero todos los divisores negativos y luego los positivos de 'a'.
      */
     public double[] encontrarIntervalos() {
+        // Convertir a en positivo
+        a = Math.abs(a);
         ArrayList<Double> divisoresList = new ArrayList<>();
         // Encontrar divisores positivos
         for (int i = 1; i <= a; i++) {
@@ -51,5 +53,6 @@ public class encontrarIntervalos {
         }
         return intervalos;
     }
-
 }
+
+
